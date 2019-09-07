@@ -12,6 +12,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import Input from '@material-ui/core/Input';
+import Chip from '@material-ui/core/Chip';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 function Copyright() {
   return (
@@ -46,13 +53,63 @@ const useStyles = makeStyles(theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
+  chips: {
+    display: 'flex',
+    flexWrap: 'flex',
+  },
+  chip: {
+    margin: 2,
+  },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+
+const games = [
+    'Mahjong',
+    'Cards',
+    'Dungeons and Dragons',
+    'Munchkin',
+    'Settlers of Catan',
+    'Ticket to Ride',
+    'Monopoly',
+    'Chess',
+    'Dominion',
+    'Agricola',
+    'Pandemic',
+    'Carcassone',
+    'Scrabble'
+];
+
+function getStyles(game, gameChoices, useStyles) {
+  return {
+    fontWeight:
+      gameChoices.indexOf(game) === -1
+        ? useStyles.typography.fontWeightRegular
+        : useStyles.typography.fontWeightMedium,
+  };
+}
+
 export default function SignUp() {
   const classes = useStyles();
+  const [gameChoices, setGameChoices] = React.useState([]);
+
+  function handleChange(event) {
+    setGameChoices(event.target.value);
+  }
+
 
   return (
     <Container component="main" maxWidth="md">
@@ -144,6 +201,31 @@ export default function SignUp() {
                 autoComplete="state"
               />
             </Grid>
+            <FormControl className={classes.formControl}>
+            <Grid item xs={12} sm={6}>
+            <InputLabel htmlFor="select-multiple-chip">Select All Interests</InputLabel>
+              <Select
+                multiple
+                value={gameChoices}
+                onChange={handleChange}
+                input={<Input id="select-multiple-chip" />}
+                renderValue={selected => (
+                  <div className={classes.chips}>
+                    {selected.map(value => (
+                      <Chip key={value} label={value} className={classes.chip} />
+                    ))}
+                  </div>
+                )}
+                MenuProps={MenuProps}
+              >
+                {games.map(game => (
+                  <MenuItem key={game} value={game}>
+                    {game}
+                  </MenuItem>
+                ))}
+              </Select>
+              </Grid>
+            </FormControl>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
