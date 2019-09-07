@@ -1,0 +1,33 @@
+.SplashPage {
+  text-align: center;
+}
+
+.SplashPage-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.SplashPage-image {
+  max-width: 50%;
+  height: auto;
+  background-image: url(./splashpage-photo.jpg);
+  background-size: contain;
+  opacity: 0.8;
+  position: relative;
+  left: -400px;
+  top: -130px;
+}
+
+.SplashPage-testimonials {
+
+}
+
+.SplashPage-buttons {
+
+}
