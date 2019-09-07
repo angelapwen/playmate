@@ -64,7 +64,23 @@
         $stmt -> execute();
         $stmt -> close();
     }
-    
+
+    // Check if username and password matches
+    function testLogIn($username,$password){
+        $mySQLi = connectMySQL();
+        $stmt = $mySQLi -> prepare ("select password from users where username=?");
+        if (!$stmt) {
+            printf("Query Prep Failed: %s\n", $mySQLi -> error);
+            exit();
+        }
+
+        $stmt -> bind_param('s', $username);
+        $stmt -> execute();           
+        $stmt -> bind_result($pass);
+        if (strcmp($pass, $password)==0){return true;}else{return false;}
+
+    }
+
     // Log in the user into the session
     function logInUser($username) {
         ini_set("session.cookie_httponly", 1);
