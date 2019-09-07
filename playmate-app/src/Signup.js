@@ -55,7 +55,7 @@ export default function SignUp() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="md">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -89,6 +89,61 @@ export default function SignUp() {
                 autoComplete="lname"
               />
             </Grid>
+             <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="age"
+                label="Age"
+                id="age"
+                autoComplete="current-age"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="phone-number"
+                label="Phone Number (XXX-XXX-XXXX)"
+                id="phone-number"
+                autoComplete="phone-number"
+              />
+            </Grid>
+             <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="street"
+                label="Street Address"
+                id="street"
+                autoComplete="street-address"
+              />
+            </Grid>
+             <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="city"
+                label="City"
+                id="city"
+                autoComplete="city"
+              />
+            </Grid>
+             <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="state"
+                label="State (eg. CA)"
+                id="state"
+                autoComplete="state"
+              />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -112,6 +167,19 @@ export default function SignUp() {
                 autoComplete="current-password"
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="confirm-password"
+                label="Retype Password"
+                type="password"
+                id="confirm-password"
+                autoComplete="confirm-password"
+              />
+            </Grid>
+            
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
