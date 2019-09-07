@@ -202,29 +202,34 @@ export default function SignUp() {
               />
             </Grid>
             <FormControl className={classes.formControl}>
-            <Grid item xs={12} sm={6}>
-            <InputLabel htmlFor="select-multiple-chip">Select All Interests</InputLabel>
-              <Select
-                multiple
-                value={gameChoices}
-                onChange={handleChange}
-                input={<Input id="select-multiple-chip" />}
-                renderValue={selected => (
-                  <div className={classes.chips}>
-                    {selected.map(value => (
-                      <Chip key={value} label={value} className={classes.chip} />
-                    ))}
-                  </div>
-                )}
-                MenuProps={MenuProps}
-              >
-                {games.map(game => (
-                  <MenuItem key={game} value={game}>
-                    {game}
-                  </MenuItem>
-                ))}
-              </Select>
-              </Grid>
+              <Grid item xs={12} sm={12}>
+              <InputLabel htmlFor="select-multiple-chip"
+                variant="outlined"
+                required
+                shrink
+                margin="dense"
+                fullWidth >Interests</InputLabel>
+                <Select
+                  multiple
+                  value={gameChoices}
+                  onChange={handleChange}
+                  input={<Input id="select-multiple-chip" />}
+                  renderValue={selected => (
+                    <div className={classes.chips}>
+                      {selected.map(value => (
+                        <Chip key={value} label={value} className={classes.chip} />
+                      ))}
+                    </div>
+                  )}
+                  MenuProps={MenuProps}
+                >
+                  {games.map(game => (
+                    <MenuItem key={game} value={game}>
+                      {game}
+                    </MenuItem>
+                  ))}
+                </Select>
+                </Grid>
             </FormControl>
             <Grid item xs={12}>
               <TextField
