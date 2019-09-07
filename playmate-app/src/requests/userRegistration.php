@@ -8,7 +8,7 @@
     $json_str = file_get_contents('php://input');
     $json_obj = json_decode($json_str, true);
     $username = filterString($json_obj['username']);
-    $nickname = filterString($json_obj['nickname']);
+    $phone = $json_obj['phone'];
     $password1 = $json_obj['password1'];
     $password2 = $json_obj['password2'];
 
@@ -20,7 +20,7 @@
              exit();
          }
     else {
-        commitUserToDatabase($username, $nickname, $password1);
+        commitUserToDatabase($username, $password1, $phone);
         logInUser($username);  
         echo json_encode(array(
             'success' => true,
