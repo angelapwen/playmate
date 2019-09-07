@@ -32,3 +32,11 @@ function submitUserRegistration() {
         }
     });
 }
+
+function logInUser(){
+    const username = document.getElementById("register_usernameInput").value;
+    const password1 = document.getElementById("register_password1Input").value;
+    const data = {
+        "username": username,
+        'password': password
+    };

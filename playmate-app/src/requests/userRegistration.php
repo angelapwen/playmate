@@ -79,4 +79,4 @@
     //     exit();
     // }
     // All checks passed, commit the new user to the database
-   
+?>
