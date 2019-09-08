@@ -11,10 +11,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 
-
-
-
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -77,7 +73,7 @@ export default function Dashboard() {
       </Container>
 
       <Container maxWidth="md" component="main">
-        <Grid container spacing={0} alignItems="center" justify="center" >
+        <Grid container spacing={1} alignItems="center" justify="center" >
             <Grid item key='match' xs={12} sm={12} md={6}>
               <Card>
                 <CardHeader
@@ -105,6 +101,30 @@ export default function Dashboard() {
                 <CardActions>
                   <Button fullWidth variant="contained" color="primary">
                     I'll Keep Searching for a PlayMate!
+                  </Button>
+                </CardActions>
+              </Card>
+              <br />
+              <Card>
+                <CardHeader
+                  title='You matched with FirstName!'
+                  subheader='Age, Location'
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                  className={classes.cardHeader}
+                />
+                <CardContent>
+                  <div className={classes.cardPricing}>
+                    <Typography variant="h4" color="textPrimary">
+                     	Let's Play! <br />
+                     	Contact me at: XXX-XXX-XXXX
+                     	(To be pushed on top of other cards)
+                    </Typography>
+                  </div>
+                </CardContent>
+                <CardActions>
+                  <Button fullWidth variant="contained" color="primary">
+                    Dismiss for Now
                   </Button>
                 </CardActions>
               </Card>
