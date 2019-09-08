@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Packages
 
 ### MaterialUI
-[https://material-ui.com/getting-started/installation/](Installation Instructions)
+[Installation Instructions](https://material-ui.com/getting-started/installation/)
 
 Make sure to run `npm install @material-ui/core` and `npm install @material-ui/icons`
 
