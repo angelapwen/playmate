@@ -11,9 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import React from 'react';
 import image from './splashpage-photo.jpg'
-import './SplashPage.css';
-
-console.log(image);
+// import './SplashPage.css';
 
 function Copyright() {
   return (
