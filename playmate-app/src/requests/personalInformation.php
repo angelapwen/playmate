@@ -7,29 +7,22 @@
     // Fetch data from JavaScript request
     $json_str = file_get_contents('php://input');
     $json_obj = json_decode($json_str, true);
-    $firstname = filterString($json_obj['firstname']);
-    $lastname = filterString($json_obj['lastname']);
+    $first_name = filterString($json_obj['first_name']);
+    $last_name = filterString($json_obj['last_name']);
     $age = filterString($json_obj['age']);
     $street=filterString($json_obj['street']);
     $city=filterString($json_obj['city']);
     $state=filterString($json_obj['state']);
     $travel_distance=filterString($json_obj['travel_distance']);
+    $email=filterString($json_obj['email']);
 
 
-    if (!(testLogIn($username,$password))) {
-             echo json_encode(array(
-                 'success' => false,
-                 'message' => 'Wrong Password!'
-             ));
-             exit();
-         }
-    else {
-        commitUserToDatabase($username, $password1, $phone);
-        logInUser($username);  
-        echo json_encode(array(
-            'success' => true,
-            'message' => 'Redirecting, Please Wait!'
-        ));      
-        exit();
-    }
+    //Push into people database
+    //Would need to check if insert is successful or not
+    insertUserToDatabase($first_name, $last_name, $age, $street, $city, $state,$travel_distance,$email);
+    echo json_encode(array(
+        'success' => true,
+        'message' => 'Information Saved Successfully!'
+    ));      
+    exit();
 ?>

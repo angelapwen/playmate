@@ -6,9 +6,9 @@
 
         // Check if the user credentials against the database
         $mySQLi = connectMySQL();
-        $stmt = $mySQLi -> prepare("select count(*), password from users where username=?");
+        $stmt = $mySQLi -> prepare('select count(*), password from users where username=?');
         if (!$stmt) {
-            printf("Query Prep Failed: %s\n", $mySQLi -> error);
+            printf('Query Prep Failed: %s\n', $mySQLi -> error);
             exit();
         }
 
@@ -31,9 +31,9 @@
     // Returns true if the username already exists in the database, false otherwise
     function usernameIsTaken($name) {
         $mySQLi = connectMySQL();
-        $stmt = $mySQLi -> prepare("select count(username) from users where username=?");
+        $stmt = $mySQLi -> prepare('select count(username) from users where username=?');
         if (!$stmt) {
-            printf("Query Prep Failed: %s\n", $mySQLi -> error);
+            printf('Query Prep Failed: %s\n', $mySQLi -> error);
             exit();
         }
 
@@ -54,36 +54,37 @@
     function commitUserToDatabase($username, $password, $phone) {
 
         $mySQLi = connectMySQL();
-        $stmt = $mySQLi -> prepare("insert into users (username, password, phone) values (?, ?, ?)");
+        $stmt = $mySQLi -> prepare('insert into users (username, password, phone) values (?, ?, ?)');
         if (!$stmt) {
-            printf("Query Prep Failed: %s\n", $mySQLi -> error);
+            printf('Query Prep Failed: %s\n', $mySQLi -> error);
             exit();
         }
 
-        $stmt -> bind_param('ssi', $username, $password, $phone);
+        $stmt -> bind_param('sss', $username, $password, $phone);
         $stmt -> execute();
         $stmt -> close();
     }
 
-    // Check if username and password matches
+    // Check if username and password matches -- true = log in
     function testLogIn($username,$password){
         $mySQLi = connectMySQL();
-        $stmt = $mySQLi -> prepare ("select password from users where username=?");
+        $stmt = $mySQLi -> prepare ('select password from users where username=?');
         if (!$stmt) {
-            printf("Query Prep Failed: %s\n", $mySQLi -> error);
+            printf('Query Prep Failed: %s\n', $mySQLi -> error);
             exit();
         }
 
         $stmt -> bind_param('s', $username);
         $stmt -> execute();           
         $stmt -> bind_result($pass);
-        if (strcmp($pass, $password)==0){return true;}else{return false;}
+        if (strcmp($pass, $password)==0){return true;}
+        else{return false;}
 
     }
 
     // Log in the user into the session
     function logInUser($username) {
-        ini_set("session.cookie_httponly", 1);
+        ini_set('session.cookie_httponly', 1);
         session_start();
         
         // Set the session username and nickname
@@ -96,9 +97,9 @@
     // Returns an array of the names of all registered users
     function getAllUsers() {
         $mySQLi = connectMySQL();
-        $stmt = $mySQLi -> prepare("select username from users");
+        $stmt = $mySQLi -> prepare('select username from users');
         if (!$stmt) {
-            printf("Query Prep Failed: %s\n", $mySQLi -> error);
+            printf('Query Prep Failed: %s\n', $mySQLi -> error);
             exit();
         }
         
@@ -114,4 +115,17 @@
         return $users;
     }
 
+    function insertUserToDatabase($first_name, $last_name, $age, $street, $city, $state,$travel_distance,$email){
+        $mySQLi = connectMySql();
+        $stmt = $mySQLi -> prepare ('insert into people (first_name, last_name, age, street, city, state, travel_distance, email) values (?,?,?,?,?,?,?,?)')
+        
+        if (!$stmt) {
+            printf('Query Prep Failed: %s\n', $mySQLi -> error);
+            exit();
+        }
+
+        $stmt -> bind_param('ssisssis', $first_name, $last_name, $age, $street, $city, $state,$travel_distance,$email);
+        $stmt -> execute();
+        $stmt -> close();
+    }
 ?>
